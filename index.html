@@ -196,7 +196,7 @@
     <!-- Upload Section -->
     <section id="upload" class="upload-section">
       <h2>Upload Resumes</h2>
-      <form id="uploadForm" action="https://krishna-252025.github.io/upload/" method="POST" enctype="multipart/form-data">
+      <form id="uploadForm" action="https://script.google.com/macros/s/AKfycbyVPamW-8XrrVrwGsVBYanyQfFomnGRl4cIa5ey2UpCz2IcOOaMu0HdI-tgB3g6oayh/exec" method="POST" enctype="multipart/form-data">
         <label for="name">Enter Your Name:</label>
         <input type="text" id="name" name="name" placeholder="Your full name" required>
 
@@ -211,6 +211,29 @@
 
         </div>
       </form>
+      <script>
+  const form = document.getElementById("uploadForm");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // Stops normal form submission (page reload)
+
+    const formData = new FormData(form); // Collects all form data
+
+    // Send data to your Google Apps Script web app
+    fetch(form.action, { method: "POST", body: formData })
+      .then((res) => res.text())
+      .then((data) => {
+        // When upload succeeds
+        alert("✅ Resume uploaded successfully!");
+        window.location.href = "upload.html"; // Redirect to upload.html page
+      })
+      .catch((err) => {
+        // If something fails
+        alert("❌ Upload failed: " + err.message);
+      });
+  });
+</script>
+
     </section>
   </main>
 
